@@ -1,0 +1,19 @@
+package p2_pack;
+
+import javax.swing.JFrame;
+
+public class ProjectFrame {
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Project 2");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		CompanyOrDate panel = new CompanyOrDate();
+		frame.getContentPane().add(panel);
+		
+		frame.pack();
+		frame.setVisible(true);
+
+	}
+
+}

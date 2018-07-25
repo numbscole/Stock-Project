@@ -1,0 +1,18 @@
+package project2;
+
+import javax.swing.JFrame;
+
+public class PushCounterFrame {
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Push Counter");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		PushCounterPanel panel = new PushCounterPanel();
+//		LayoutTests panel = new LayoutTests(1,2,3);
+		
+		frame.getContentPane().add(panel);
+		
+		frame.pack();
+		frame.setVisible(true);
+	}
+}

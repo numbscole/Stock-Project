@@ -1,0 +1,7 @@
+package p2_pack;
+
+import javax.swing.JPanel;
+
+public class ScrollBarEx extends JPanel {
+
+}

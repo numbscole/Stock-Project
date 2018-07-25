@@ -1,0 +1,68 @@
+package p2_pack;
+
+import java.awt.BorderLayout;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import javax.swing.JRadioButton;
+
+public class ScrollBarEx extends JPanel {
+
+  JLabel label;
+
+  public ScrollBarEx() {
+    super(true);
+    label = new JLabel();
+
+    JScrollBar hbar = new JScrollBar(JScrollBar.HORIZONTAL, 30, 20, 0, 300);
+    JScrollBar vbar = new JScrollBar(JScrollBar.VERTICAL, 30, 40, 0, 300);
+
+    hbar.setUnitIncrement(2);
+    hbar.setBlockIncrement(1);
+
+    hbar.addAdjustmentListener(new MyAdjustmentListener());
+    vbar.addAdjustmentListener(new MyAdjustmentListener());
+    setLayout(new BorderLayout(0, 0));
+
+    add(hbar);
+    add(vbar);
+    add(label);
+    
+    JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
+    add(rdbtnNewRadioButton_1);
+    
+    JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
+
+    
+    
+//	for (int i = 0; i < dat.getStockCount(); i++) {
+//		Button btnAbutton = new Button(composite, SWT.RADIO);
+//		btnAbutton.setBounds(0, 0+i*18, 120, 16);
+//		btnAbutton.setText(dat.getStockName(i));
+//	}
+	 
+    
+  }
+
+  class MyAdjustmentListener implements AdjustmentListener {
+    public void adjustmentValueChanged(AdjustmentEvent e) {
+      label.setText("    New Value is " + e.getValue() + "      ");
+      repaint();
+    }
+  }
+
+  public static void main(String s[]) {
+    JFrame frame = new JFrame("Scroll Bar Example");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setContentPane(new ScrollBarEx());
+    frame.setSize(200, 200);
+    frame.setVisible(true);
+  }
+}

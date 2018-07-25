@@ -1,0 +1,7 @@
+package windowBuilder;
+
+import javax.swing.JPanel;
+
+public class picPanel extends JPanel {
+
+}

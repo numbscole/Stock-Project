@@ -1,0 +1,15 @@
+package creatingGUI;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+
+public class ProjectPanel extends JPanel {
+	public ProjectPanel() {
+		setupPanel();
+	}
+	
+	private void setupPanel() {
+		setBackground(new Color(0, 153, 102));
+	}
+
+}

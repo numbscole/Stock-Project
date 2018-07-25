@@ -1,0 +1,113 @@
+package p2_pack;
+
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.custom.ScrolledComposite;
+
+import javax.swing.ButtonGroup;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.widgets.ExpandBar;
+import org.eclipse.swt.widgets.ExpandItem;
+import org.eclipse.swt.widgets.CoolBar;
+import org.eclipse.swt.widgets.CoolItem;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.wb.swt.SWTResourceManager;
+
+public class GuiProject2 {
+	
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+
+
+	protected Shell shell;
+
+	/**
+	 * Launch the application.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		try {
+			GuiProject2 window = new GuiProject2();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Open the window.
+	 */
+	public void open() {
+		Display display = Display.getDefault();
+		createContents();
+		shell.open();
+		shell.layout();
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+	}
+
+	/**
+	 * Create contents of the window.
+	 */
+	protected void createContents() {
+		Data dat = new Data("./dow_jones_index.data");
+		BasicPredictor stockMan = new Broker(dat);
+		stockMan.setPortfolioAmount(10000);
+		stockMan.predict();
+		System.out.println("type 1 final amount $"+stockMan.getPortfolioAmount());
+		
+		System.out.println("--------------------------------\n--------------------------------");
+		Broker1 stockerMan = new Broker1(dat);
+		stockerMan.setPortfolioAmount(10000);
+		stockerMan.predict();
+		System.out.println("type 2 final amount $"+stockerMan.getPortfolioAmount());
+		
+		System.out.println("--------------------------------\n--------------------------------");
+		Broker2 stockestMan = new Broker2(dat);
+		stockestMan.setPortfolioAmount(10000);
+		stockestMan.predict();
+		System.out.println("type 3 final amount $"+stockestMan.getPortfolioAmount());
+		
+		System.out.println(dat.getStockCount());
+		System.out.println(dat.getWeekCount());
+		System.out.println(dat.getStocksWeek(1, 1));
+		System.out.println(dat.getStockSymbol(2));
+		System.out.println(dat.getStockName(2));
+		System.out.println(dat.getWeekDate(3));		
+		System.out.println(stockMan.rankStocks(3));
+		
+		shell = new Shell();
+		shell.setSize(450, 300);
+		shell.setText("SWT Application");
+		shell.setLayout(null);
+		
+		Combo combo = new Combo(shell, SWT.NONE);
+		combo.setBounds(39, 21, 91, 23);
+		
+		ScrolledComposite scrolledComposite = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setBounds(10, 50, 120, 201);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		
+		Composite composite = new Composite(scrolledComposite, SWT.NONE);
+		composite.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_GREEN));
+		scrolledComposite.setContent(composite);
+		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
+		for (int i = 0; i < dat.getStockCount(); i++) {
+			Button btnAbutton = new Button(composite, SWT.RADIO);
+			btnAbutton.setText(dat.getStockName(i));
+		//	btnAbutton
+		//	buttonGroup.add(btnAbutton);
+		}
+
+	}
+}

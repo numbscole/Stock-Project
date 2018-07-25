@@ -1,0 +1,10 @@
+package p2_pack;
+
+public class ProjectFrame {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

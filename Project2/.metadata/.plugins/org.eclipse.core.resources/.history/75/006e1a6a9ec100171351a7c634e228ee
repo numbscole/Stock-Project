@@ -1,0 +1,23 @@
+package creatingGUI;
+
+import javax.swing.JFrame;
+
+public class ProjectFrame extends JFrame {
+	private ProjectPanel currentPanel;
+	
+	public ProjectFrame() {
+		currentPanel = new ProjectPanel();
+		setupFrame();
+	}
+	
+	private void setupFrame() {
+		this.setContentPane(currentPanel);
+
+	}
+	
+	public void start() {
+		this.setSize(500,500);
+		this.setVisible(true);
+	}
+
+}

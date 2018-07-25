@@ -1,0 +1,7 @@
+package p2_pack;
+
+import java.awt.Scrollbar;
+
+public class Someclass extends Scrollbar {
+
+}

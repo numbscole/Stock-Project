@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+	<addComponent
+		id="custom_1509844199706"
+		name="JPanel"
+		visible="true"
+		class="javax.swing.JPanel"
+		category="org.eclipse.wb.rcp.controls"/>
+</commands>

@@ -1,0 +1,353 @@
+package p2_pack;
+
+import javax.swing.JFrame;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JCheckBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JMenuBar;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
+
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.JFormattedTextField;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JScrollPane;
+import javax.swing.JScrollBar;
+import javax.swing.BoxLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+public class ProjectRunner{
+	private static JTextField textField;
+	private static JTextField textField_1;
+	private static final ButtonGroup buttonGroup = new ButtonGroup();
+	private static final ButtonGroup buttonGroupCompanies = new ButtonGroup();
+
+	
+	
+	public static void main(String[] args) {
+		Data dat = new Data("./dow_jones_index.data");
+		int toBroke = 0;
+
+
+		
+		JFrame frame = new JFrame("Project 2");
+		frame.setBounds(100, 100, 900, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		
+		
+		JPanel panelMain = new JPanel();
+		frame.getContentPane().add(panelMain, "name_489072209459833");
+		panelMain.setLayout(null);
+		panelMain.setVisible(true);
+		
+		
+		
+		JSlider slider = new JSlider();
+
+		slider.setPaintTicks(true);
+		slider.setBounds(210, 59, 200, 45);
+		panelMain.add(slider);
+				
+		
+		textField_1 = new JTextField();
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setBounds(240, 109, 108, 20);
+		panelMain.add(textField_1);
+		textField_1.setColumns(10);
+		textField_1.setText("$" + 100*slider.getValue());
+		
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				textField_1.setText("$" + (100*slider.getValue()));
+			}
+		});		
+		
+		
+		JPanel panelBurger = new JPanel();
+		frame.getContentPane().add(panelBurger, "name_489080885496905");
+		panelBurger.setVisible(false);
+		
+
+		JPanel panelChicken = new JPanel();
+		frame.getContentPane().add(panelChicken, "name_489113144514732");
+		panelChicken.setLayout(null);
+		panelChicken.setVisible(false);
+		
+		JButton btnBroker1 = new JButton("Broker 1");
+		btnBroker1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelBurger.setVisible(true);
+				panelMain.setVisible(false);
+			}
+		});
+		btnBroker1.setBounds(66, 12, 58, 22);
+		panelMain.add(btnBroker1);
+		
+		JButton btnBroker2 = new JButton("Broker 2");
+		btnBroker2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				panelChicken.setVisible(true);
+				panelMain.setVisible(false);
+			}
+		});
+		btnBroker2.setBounds(169, 11, 58, 23);
+		panelMain.add(btnBroker2);
+		
+
+		
+
+		
+		JTextPane txtpnInputAmountTo = new JTextPane();
+		txtpnInputAmountTo.setBackground(SystemColor.activeCaption);
+		txtpnInputAmountTo.setText("Amount to Give to Broker");
+		txtpnInputAmountTo.setBounds(77, 59, 93, 45);
+		panelMain.add(txtpnInputAmountTo);
+		
+		JRadioButton rdbtnB1 = new JRadioButton("Broker 1");
+		rdbtnB1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+			}
+		});
+		buttonGroup.add(rdbtnB1);
+		rdbtnB1.setBounds(38, 146, 109, 23);
+		panelMain.add(rdbtnB1);
+		
+
+		
+		JRadioButton rdbtnB2 = new JRadioButton("Broker 2");
+		rdbtnB2.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+			}
+		});
+		buttonGroup.add(rdbtnB2);
+		rdbtnB2.setBounds(176, 146, 109, 23);
+		panelMain.add(rdbtnB2);
+		
+		JRadioButton rdbtnB3 = new JRadioButton("Broker 3");
+		rdbtnB3.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+			}
+		});
+		buttonGroup.add(rdbtnB3);
+		rdbtnB3.setBounds(302, 146, 109, 23);
+		panelMain.add(rdbtnB3);
+		
+		
+		
+		
+		
+		textField = new JTextField();
+		textField.setBounds(210, 230, 168, 20);
+		panelMain.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnBroker3 = new JButton("Broker 3");
+		btnBroker3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnB1.isSelected())
+				{
+					textField.setText(MyBroker(dat, 100*slider.getValue(), 1));
+				}
+				if(rdbtnB2.isSelected())
+				{
+					textField.setText(MyBroker(dat, 100*slider.getValue(), 2));
+				}
+				if(rdbtnB3.isSelected())
+				{
+					textField.setText(MyBroker(dat, 100*slider.getValue(), 3));
+				}
+				
+			}
+		});
+		btnBroker3.setBounds(10, 205, 108, 45);
+		panelMain.add(btnBroker3);
+		panelBurger.setLayout(null);
+		
+		
+		
+		
+		
+
+		
+		JCheckBox chckbxBurger = new JCheckBox("Burger");
+		chckbxBurger.setBounds(331, 7, 97, 23);
+		panelBurger.add(chckbxBurger);
+		
+		JCheckBox chckbxBFries = new JCheckBox("Fries");
+		chckbxBFries.setBounds(331, 33, 97, 23);
+		panelBurger.add(chckbxBFries);
+		
+		JCheckBox chckbxBDrink = new JCheckBox("Drink");
+		chckbxBDrink.setBounds(331, 59, 97, 23);
+		panelBurger.add(chckbxBDrink);
+		
+		JButton btnBDoneButton = new JButton("Done!");
+		btnBDoneButton.setBounds(156, 213, 97, 37);
+		btnBDoneButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String s = new String();
+				if(chckbxBurger.isSelected()) {
+					s = "Burger, ";
+				}
+				if(chckbxBFries.isSelected()) {
+					s = s + "Fries, ";
+				}
+				if(chckbxBDrink.isSelected()) {
+					s = s + "Drink, ";
+				}
+				textField.setText(s);
+				panelBurger.setVisible(false);
+				panelMain.setVisible(true);
+			}
+		});
+		panelBurger.add(btnBDoneButton);
+		
+		JPanel CompanyListPanel = new JPanel();
+		CompanyListPanel.setBounds(10, 7, 126, 243);
+		panelBurger.add(CompanyListPanel);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setMaximum(50);
+		GroupLayout gl_CompanyListPanel = new GroupLayout(CompanyListPanel);
+		gl_CompanyListPanel.setHorizontalGroup(
+			gl_CompanyListPanel.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		);
+		gl_CompanyListPanel.setVerticalGroup(
+			gl_CompanyListPanel.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+		);
+		CompanyListPanel.setLayout(gl_CompanyListPanel);
+		
+		
+		
+		
+		
+		JPanel panel = new JPanel();
+		for(int i = 0; i < 10; i++) {
+			JButton testerButt = new JButton("Hello " + i);
+			testerButt.setBounds(0, 20 + 40*i, 30, 30);
+			panel.add(testerButt);
+		}		
+		JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setBounds(156, 33, 137, 142);
+
+        panelBurger.add(scrollPane);
+		
+//		for (int i = 0; i < dat.getStockCount(); i++) {
+////			JRadioButton rdbtnNewRadioButton = new JRadioButton(dat.getStockName(i));
+////			rdbtnNewRadioButton.setName(dat.getStockName(i));
+////			JRadioButton rdbtnNewRadioButton = new JRadioButton("Hello " + i);
+////			rdbtnNewRadioButton.setName("Hello " + i);
+//			//rdbtnNewRadioButton.addActionListener(new RadioButtonListener());			
+//			CompanyListPanel.add(rdbtnNewRadioButton);
+//			buttonGroupCompanies.add(rdbtnNewRadioButton);
+//			rdbtnNewRadioButton.setBounds(0, 15+30*i, 100, 25);		
+//			CompanyListPanel.add(rdbtnNewRadioButton);
+//		}
+		
+//		private class RadioButtonListener implements ActionListener{
+//			public void actionPerformed(ActionEvent event) {
+//				
+//			}
+//		}
+		JCheckBox chckbxChicken = new JCheckBox("Chicken");
+		chckbxChicken.setBounds(161, 53, 97, 23);
+		panelChicken.add(chckbxChicken);
+		
+		JCheckBox chckbxBoxCFries = new JCheckBox("Fries");
+		chckbxBoxCFries.setBounds(158, 115, 97, 23);
+		panelChicken.add(chckbxBoxCFries);
+		
+		JCheckBox chckbxBoxCDrink = new JCheckBox("Drink");
+		chckbxBoxCDrink.setBounds(159, 168, 97, 23);
+		panelChicken.add(chckbxBoxCDrink);
+		
+		JButton btnCDoneButton = new JButton("Done!");
+		btnCDoneButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String s = new String();
+				if(chckbxChicken.isSelected()) {
+					s = "Chicken, ";
+				}
+				if(chckbxBoxCFries.isSelected()) {
+					s = s + "Fries, ";
+				}
+				if(chckbxBoxCDrink.isSelected()) {
+					s = s + "Drink, ";
+				}
+				
+				textField.setText(s);
+				panelChicken.setVisible(false);
+				panelMain.setVisible(true);
+			}
+		});
+		btnCDoneButton.setBounds(162, 213, 97, 37);
+		panelChicken.add(btnCDoneButton);
+		
+		frame.setVisible(true);
+
+	}
+	
+	public static String MyBroker(Data dat, int amount, int whoBrokes) {
+		String toReturn = "";
+		if (whoBrokes == 1) {
+		BasicPredictor stockMan = new Broker(dat);
+		stockMan.setPortfolioAmount(amount);
+		stockMan.predict();
+//		System.out.println("type 1 final amount $"+stockMan.getPortfolioAmount());
+//		System.out.println("--------------------------------\n--------------------------------");
+		toReturn = "" + stockMan.getPortfolioAmount();
+
+
+		}
+		if (whoBrokes == 2) {
+		Broker1 stockerMan = new Broker1(dat);
+		stockerMan.setPortfolioAmount(amount);
+		stockerMan.predict();
+//		System.out.println("type 2 final amount $"+stockerMan.getPortfolioAmount());
+//		System.out.println("--------------------------------\n--------------------------------");
+		toReturn = "" + stockerMan.getPortfolioAmount();
+
+
+		}
+		if(whoBrokes == 3) {
+		Broker2 stockestMan = new Broker2(dat);
+		stockestMan.setPortfolioAmount(amount);
+		stockestMan.predict();
+//		System.out.println("type 3 final amount $"+stockestMan.getPortfolioAmount());
+//		System.out.println("--------------------------------\n--------------------------------");
+		toReturn = "" + stockestMan.getPortfolioAmount();
+
+		}
+		
+//		System.out.println(dat.getStockCount());
+//		System.out.println(dat.getWeekCount());
+//		System.out.println(dat.getStocksWeek(1, 1));
+//		System.out.println(dat.getStockSymbol(2));
+//		System.out.println(dat.getStockName(2));
+//		System.out.println(dat.getWeekDate(3));		
+		//System.out.println(stockMan.rankStocks(3));
+		
+		return toReturn;
+	}
+}

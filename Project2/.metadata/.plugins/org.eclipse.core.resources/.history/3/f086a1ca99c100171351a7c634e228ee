@@ -1,0 +1,9 @@
+package creatingGUI;
+
+import javax.swing.JFrame;
+
+public class ProjectFrame extends JFrame {
+	public ProjectFrame() {
+	}
+
+}
